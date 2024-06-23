@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="navigation">
+        <div class="freedom-wall"><a href="index.html">Freedom Wall</a></div>
+        <div>
+            <a href="register.html" id="registerLink">Register</a>
+            <a href="login.html" id="loginLink">Login</a>
+        </div>
+    </div>
+
+    <div class="container" id="welcomeContainer" style="display: none;">
+        <div class="welcome-box">
+            <h1>Welcome, <span id="welcomeUsername"></span>!</h1>
+            <button class="custom-btn" onclick="logout()">Logout</button>
+            <button class="custom-btn" onclick="FNW()">Edit Profile</button>
+        </div>
+    </div>
+
+    <div class="container post-section" id="postSection" style="display: none;">
+        <h2>Create a Post</h2>
+        <input type="text" id="postTitle" placeholder="Title (max 20 words)">
+        <textarea id="postContent" placeholder="What's on your mind? (max 100 words)"></textarea>
+        <br>
+        <button class="custom-btn" onclick="createPost()">Post</button>
+    </div>
+
+    <div class="container posts-list" id="posts-list">
+        <h2>Posts <a href="#" class="dropdown-logo" onclick="loadPosts()">&#9662;</a></h2>
+        <ul id="posts"></ul>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const username = localStorage.getItem("currentUser");
+            if (username) {
+                document.getElementById("welcomeUsername").textContent = username;
+                document.getElementById("welcomeContainer").style.display = "block";
+                document.getElementById("postSection").style.display = "block";
+                document.getElementById("registerLink").style.display = "none";
+                document.getElementById("loginLink").style.display = "none";
+                loadUserProfiles();
+            }
+        });
+
+        function FNW() {
+            alert("Functionality is not working!");
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        function createPost() {
+            const titleElement = document.getElementById('postTitle');
+            const contentElement = document.getElementById('postContent');
+
+            let title = titleElement.value.trim();
+            let content = contentElement.value.trim();
+
+            const titleWords = title.split(/\s+/);
+            const contentWords = content.split(/\s+/);
+
+            if (titleWords.length > 20) {
+                title = titleWords.slice(0, 20).join(' ');
+            }
+
+            if (contentWords.length > 20) {
+                content = contentWords.slice(0, 20).join(' ');
+            }
+
+            if (!title || !content) {
+                alert('Both title and content are required!');
+                return;
+            }
+
+            const username = localStorage.getItem('currentUser');
+
+            const posts = JSON.parse(localStorage.getItem('posts') || '[]');
+            const newPost = { id: generateId(), author: username, title, content };
+            posts.unshift(newPost);
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+            loadPosts();
+
+            titleElement.value = '';
+            contentElement.value = '';
+        }
+    </script>
+</body>
+</html>

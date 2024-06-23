@@ -1,0 +1,158 @@
+/* Additional styles for Twitter-like design */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation {
+    background: linear-gradient(135deg, #000810, #002341, #003461);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.navigation .freedom-wall {
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin-left: 20px; /* Adjust for spacing */
+}
+
+#welcomeContainer{
+    background-color: srgb(255, 255, 255);
+    padding:15px
+}
+
+.container {
+    animation: animate 1 ease-in-out 0.3s 1 forwards;
+
+    background-color: #f5f8fa;
+    margin: 20px auto;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Increase max-width for larger container */
+}
+
+.welcome-box {
+    text-align: center;
+    margin-top: 5px;
+    padding: 5px;
+    
+    background-color: #f5f8fa;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-box #welcomeUsername {
+    font-weight: bold;
+    color: #1da1f2;
+}
+
+.post-section {
+    margin-top: 20px;
+    background-color: #f5f8fa;
+    padding: 20px; /* Increase padding for more spacing */
+    border-radius: 8px;
+}
+
+.post-section input[type="text"],
+.post-section textarea {
+    width: calc(100% - 40px); /* Adjust width minus padding */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+.post-section textarea {
+    height: 120px; /* Increase default height for textarea */
+    resize: vertical; /* Allow vertical resizing */
+    overflow-wrap: break-word; /* Handle long words */
+}
+
+.posts-list {
+    margin-top: 20px;
+    background: linear-gradient(to bottom right, #f2f9ff, #d2eafe);
+    padding: 20px; /* Increase padding for more spacing */
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: animate 1 ease-in-out 0.3s 1 forwards;
+}
+
+.posts-list h2 {
+    margin-bottom: 10px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.posts-list h2 .dropdown-logo {
+    margin-left: auto; /* Pushes the dropdown to the right */
+    font-size: 24px; /* Larger font size */
+    cursor: pointer;
+}
+
+.posts-list h2 .dropdown-logo:hover {
+    text-decoration: underline;
+}
+
+.posts-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.post-item {
+    background-color: white;
+    margin: 10px 0;
+    padding: 15px; /* Increase padding for more spacing */
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-item p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.post-item a {
+    display: block;
+    font-size: 14px;
+    color: #00539b;
+    text-decoration: none;
+    margin-top: 8px;
+}
+
+.post-item a:hover {
+    text-decoration: underline;
+}
+
+.custom-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-btn:hover {
+    background-color: #0d8bf0;
+}
+
