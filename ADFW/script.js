@@ -91,6 +91,7 @@ function login(event) {
 
     if (username === '' || password === '') {
         alert('Please fill in all fields!');
+        window.location.reload();
         return;
     }
 
@@ -108,6 +109,7 @@ function login(event) {
     } else {
         console.error('Login failed for username:', username);
         alert('Invalid username or password!');
+        window.location.reload();
     }
 }
 
