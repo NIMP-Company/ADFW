@@ -80,7 +80,7 @@ function register(event) {
     document.getElementById('regUsername').value = '';
     document.getElementById('regPassword').value = '';
 
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
 }
 
 function login(event) {
