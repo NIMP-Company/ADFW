@@ -7,28 +7,53 @@ body {
 }
 
 .navigation {
-    background: linear-gradient(135deg, #000810, #002341, #003461);
-    padding: 10px;
+    padding: 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
 .navigation a {
-    color: white;
+    color: #1A408B;
     text-decoration: none;
     margin: 0 10px;
-    font-size: 18px;
+    font-size: 36px;
+    font-family: 'Marmelad', sans-serif;
 }
 
 .navigation .freedom-wall {
-    color: white;
+    color: #1A408B;
     font-weight: bold;
     font-size: 20px;
-    margin-left: 20px; /* Adjust for spacing */
+    margin-left: 20px;
+    
 }
+.navigation .getting-started {
+    display: flex; 
+    align-items: center; 
+}
+
+.navigation .getting-started a {
+    color: rgb(0, 0, 0); 
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+}
+
+.navigation .getting-started .sign-up {
+    background-color: #ffffff06;
+    border: 1px solid #1a408bb1;
+    border-radius: 20px; 
+    padding: 5px 10px; 
+    margin-right: 0; 
+}
+
+.navigation .getting-started .login {
+    padding: 5px 10px;
+    margin-right: 20px; 
+}
+
 
 #welcomeContainer{
     background-color: srgb(255, 255, 255);
