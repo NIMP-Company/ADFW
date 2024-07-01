@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Marmelad&display=swap" rel="stylesheet">
 </head>
 <body>
       <div class="navigation">
         <div class="freedom-wall"><a href="index.html">Freedom Wall</a></div>
-        <div>
+        <div class = "nav">
             <a href="register.html" id="registerLink">Register</a>
             <a href="login.html" id="loginLink">Login</a>
         </div>
     </div>
 
     <div class="container">
-        <h1>Register</h1>
+        <h1>Create an Account!</h1>
+        <div class="form-info">
         <form id="registerForm" onsubmit="register(event)">
             <label for="regUsername">Username:</label>
-            <input type="text" id="regUsername" name="regUsername" required><br>
+            <input type="text" class "uname" id="regUsername" name="regUsername" required><br>
         
             <label for="regPassword">Password:</label>
-            <input type="password" id="regPassword" name="regPassword" required><br>
+            <input type="password" class "pass" id="regPassword" name="regPassword" required><br>
         
             <button type="submit">Register</button>
         </form>
-        
         <p>Already have an account? <a href="login.html">Login here</a></p>
     </div>
+</div>
+
+
     <script src="script.js"></script>
 </body>
 </html>

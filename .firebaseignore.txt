@@ -1,8 +1,0 @@
-# Ignore everything
-*
-
-# Allow only the specific files and directories you need to deploy
-!/django_project/blog/static/blog/*
-!/django_project/blog/static/blog/index.html
-!/django_project/blog/static/blog/main.css
-!/django_project/blog/static/blog/app.js

@@ -1,5 +1,3 @@
-// Initialize Firebase (if needed)
-// Replace with your Firebase configuration
 const firebaseConfig = {
     apiKey: "your-api-key",
     authDomain: "your-auth-domain",
@@ -180,7 +178,19 @@ function generateId() {
 function loadPosts() {
     const posts = JSON.parse(localStorage.getItem('posts') || '[]');
     const postsList = document.getElementById('posts');
+    const postsContainer = document.getElementById('posts');
     postsList.innerHTML = '';
+    postsContainer.innerHTML = '';
+
+    const username = localStorage.getItem('currentUser');
+
+    const filteredPosts = posts.filter(post => post.author === "sam euser");
+
+    filteredPosts.forEach(post => {
+        const li = document.createElement('li');
+        li.innerHTML = `<strong>${post.title}</strong><br>${post.content}<br><em>Author: ${post.author}</em>`;
+        postsContainer.appendChild(li);
+    });
 
     posts.forEach(post => {
         const postItem = document.createElement('li');
