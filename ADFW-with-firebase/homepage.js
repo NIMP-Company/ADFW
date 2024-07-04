@@ -1,12 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, collection, addDoc, updateDoc, deleteDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, orderBy, query, serverTimestamp, updateDoc } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js";
 
 // Attach functions to the global scope
 window.deletePost = deletePost;
 window.editPost = editPost;
 window.toggleLike = toggleLike;
-
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -108,8 +107,6 @@ addPostButton.addEventListener('click', async (event) => {
 });
 
 
-// Load and display posts
-// Load and display posts
 const postsContainer = document.getElementById('postsContainer');
 
 async function loadPosts() {
@@ -117,11 +114,11 @@ async function loadPosts() {
     const q = query(postsRef, orderBy("timestamp", "desc"));
 
     const querySnapshot = await getDocs(q);
-    postsContainer.innerHTML = ""; // Clear existing posts
+    postsContainer.innerHTML = ""; 
     querySnapshot.forEach((doc) => {
         const post = doc.data();
         const postId = doc.id;
-        console.log("Post data:", post); // Log the post data
+        console.log("Post data:", post); 
 
         const postElement = document.createElement('div');
         postElement.className = 'post';
@@ -144,9 +141,6 @@ async function loadPosts() {
 // Load posts on page load
 document.addEventListener('DOMContentLoaded', loadPosts);
 
-
-
-// Function to delete a post
 // Function to delete a post
 async function deletePost(postId) {
     console.log("Deleting post with ID:", postId); // Add this line
@@ -225,22 +219,33 @@ async function toggleLike(postId) {
     }
 }
 
-
-
-
-
 function showMessage(message, elementId) {
     const element = document.getElementById(elementId);
     element.innerText = message;
 }
 
+const authButton = document.getElementById('logout');
 
 const checker = localStorage.getItem('guestMode');
-if(checker == 'true'){
-    console.log('hi', checker);
-    const postForm = document.getElementById('postForm').style.display='none';
-    const welcome = document.getElementById('welcome').innerHTML='Welcome! You are logged in as a Guest';
-}else{
-    console.log('hleoeoo', checker);
+if (checker === 'true') {
+    authButton.innerText = 'Login';
+    authButton.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+    document.getElementById('postForm').style.display = 'none';
+    document.getElementById('welcome').innerText = 'Welcome! You are logged in as a Guest';
+} else {
+    authButton.innerText = 'Logout';
+    authButton.addEventListener('click', () => {
+        localStorage.removeItem('loggedInUserId');
+        localStorage.removeItem('guestMode');
+        signOut(auth)
+            .then(() => {
+                window.location.href = 'index.html';
+            })
+            .catch((error) => {
+                console.error('Error signing out:', error);
+            });
+    });
 }
 
