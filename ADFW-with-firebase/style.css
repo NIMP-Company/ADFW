@@ -2,29 +2,67 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
 }
 
 body {
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    color: #1A408B;
+    font-size: 40px;
+    margin: 10px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size:60px; 
+    font-weight: bold;
+    color: #1A408B;
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+}
+
+.main-content {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-self: center;
+    max-width: 100%;
+    margin: 120px 40px 40px;
+    padding: 20px;
 }
 
 .container {
-    background: #fff;
+    background: #ffffff;
     width: 500px;
     padding: 2rem;
     border-radius: 10px;
+    margin: 0 auto;
+    padding: 20px;
     box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 
 .form-title {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-family: "Lilita One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
     text-align: center;
+    color: #3A5FA5;
     margin-bottom: 1.5rem;
 }
 
@@ -43,33 +81,37 @@ body {
 
 input {
     width: 100%;
-    padding: 10px 10px 10px 40px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px 12px 12px 40px;
+    border: 1px solid #ccc; 
+    border-radius: 25px; 
+    box-sizing: border-box;
+    outline: none; 
     font-size: 1rem;
     transition: border 0.3s ease;
 }
 
 input:focus {
-    border-color: hsl(327, 90%, 28%);
+    border-color: #000000;
     outline: none;
 }
 
 button {
     width: 100%;
-    padding: 10px;
     border: none;
-    border-radius: 5px;
-    background-color: rgb(125, 125, 235);
-    color: #fff;
+    padding: 10px 12px;
+    border: 1px solid #ccc; 
+    border-radius: 18px; 
+    background-color: #1da1f2;
     font-size: 1rem;
+    color: white;
     font-weight: bold;
+    align-self: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #07001f;
+    background-color: #0d8bf0;
 }
 
 .links {
@@ -86,14 +128,14 @@ button:hover {
 .links button {
     background: none;
     border: none;
-    color: rgb(125, 125, 235);
     cursor: pointer;
     text-decoration: underline;
     font-weight: bold;
+    color: #1da1f2;
 }
 
 .links button:hover {
-    color: blue;
+    color: #0d8bf0;
 }
 
 .messageDiv {
