@@ -73,6 +73,14 @@ onAuthStateChanged(auth, async (user) => {
 
 // Handle logout
 const logoutButton = document.getElementById('logout');
+
+if(guestMode == 'true'){
+    logoutButton.innerHTML = "Login here";
+}else{
+    console.log("arbor my ni");
+}
+
+
 logoutButton.addEventListener('click', () => {
     localStorage.removeItem('loggedInUserId');
     localStorage.removeItem('guestMode');
@@ -84,6 +92,7 @@ logoutButton.addEventListener('click', () => {
             console.error('Error signing out:', error);
         });
 });
+
 
 
 // Add a new post
@@ -142,13 +151,13 @@ addPostButton.addEventListener('click', async (event) => {
 });
 
 const postsContainer = document.getElementById('postsContainer');
+
 async function loadPosts() {
     const postsRef = collection(db, "posts");
     const q = query(postsRef, orderBy("timestamp", "desc"));
 
     const querySnapshot = await getDocs(q);
     postsContainer.innerHTML = "";
-    
     querySnapshot.forEach((doc) => {
         const post = doc.data();
         const postId = doc.id;
@@ -176,7 +185,6 @@ async function loadPosts() {
                     <button class="delete-btn" onclick="deletePost('${postId}')">Delete</button>` : ''}
             </div>
             <hr id="hrline">
-            <div id="alertHere-${postId}"> <p id="alertHere2-${postId}"></p> </div>
             <div class="comments-section" id="comments-${postId}">
                 <h4>
                     <span class="comment-toggle" onclick="toggleSeeMore('${postId}')">See Comments</span>
@@ -188,7 +196,8 @@ async function loadPosts() {
                     <div id="cSection"> 
                         ${localStorage.getItem('guestMode') === 'true' ? '' : `
                         <textarea class="comment-textarea" placeholder="Add a comment" required></textarea>
-                        <button id="csb" type="submit" class="comment-submit-btn">Comment</button>
+
+                            <button id="csb" type="submit" class="comment-submit-btn">Comment</button>
                         `}
                     </div>
                 </form>
@@ -199,7 +208,6 @@ async function loadPosts() {
         loadComments(postId); // Load comments for the post
     });
 }
-
 
 
 // Load posts on page load
@@ -231,8 +239,6 @@ async function editPost(postId, currentTitle, currentContent) {
                 content: newContent,
                 timestamp: serverTimestamp()
             });
-   
-
             console.log("Post successfully updated!");
             showMessage('Post updated successfully', 'postMessage');
             loadPosts(); // Reload posts after update
@@ -366,93 +372,59 @@ async function loadComments(postId) {
         commentTextElement.style.fontStyle = 'normal';
         commentTextElement.style.fontSize= '20px';
         commentTextElement.style.color= 'rgb(53, 53, 53)';
+                
 
         commentsContainer.appendChild(commentElement);
         commentCount++; // Increment comment count
     });
 
-    // Display a message if there are zero comments
-    if (commentCount === 0) {
-        const noCommentsMessage = document.createElement('div');
-        noCommentsMessage.textContent = "Be the first to comment!";
-        noCommentsMessage.style.fontFamily = '"Mukta", sans-serif';
-        noCommentsMessage.style.fontWeight = '100';
-        noCommentsMessage.style.fontStyle = 'normal';
-        noCommentsMessage.style.fontSize = '18px';
-        noCommentsMessage.style.color = '#9c929290';
-        commentsContainer.appendChild(noCommentsMessage);
+    // Display total comment count
+    const totalComments = querySnapshot.size;
+    const commentCountElement = document.getElementById(`comment-count-${postId}`);
+    commentCountElement.innerText = totalComments.toString();
+
+    // Hide comments container initially if more than 3 comments
+    if (totalComments > 3) {
+        commentsContainer.classList.add('collapsed');
+        const showMoreButton = document.createElement('span');
+        showMoreButton.innerText = 'Show More';
+        showMoreButton.className = 'show-more-btn';
+        showMoreButton.addEventListener('click', () => toggleSeeMore(postId));
+        commentsContainer.appendChild(showMoreButton);
     }
 }
 
 
 
-
-// Function to edit a comment
 // Function to edit a comment
 async function editComment(postId, commentId, currentText) {
-    try {
-        const newCommentText = prompt("Edit your comment:", currentText);
-        if (newCommentText === null || newCommentText.trim() === "") {
-            return; // If cancelled or empty input, do nothing
+    const newText = prompt('Edit your comment:', currentText);
+
+    if (newText && newText.trim() !== '') {
+        try {
+            await updateDoc(doc(db, "posts", postId, "comments", commentId), {
+                text: newText,
+                timestamp: serverTimestamp()
+            });
+            console.log("Comment successfully updated!");
+            loadComments(postId); // Reload comments after update
+        } catch (error) {
+            console.error("Error updating comment: ", error);
         }
-
-        await updateDoc(doc(db, "posts", postId, "comments", commentId), {
-            text: newCommentText
-        });
-
-        // Update the comment text in the DOM
-        const commentTextElement = document.getElementById(`commentText-${commentId}`);
-        if (commentTextElement) {
-            commentTextElement.textContent = newCommentText;
-        }
-
-        // Show an alert message specific to this post's comments section
-        const alertHere2 = document.getElementById(`alertHere2-${postId}`);
-        if (alertHere2) {
-            alertHere2.innerHTML = "Comment Edited successfully";
-            alertHere2.style.color = "blue";
-
-            // Clear the message after 3 seconds
-            setTimeout(() => {
-                alertHere2.innerHTML = ""; // Clear the message
-            }, 3000); // 3000 milliseconds = 3 seconds
-        }
-    } catch (error) {
-        console.error("Error editing comment: ", error);
     }
 }
 
 
-
-// Function to delete a comment
 // Function to delete a comment
 async function deleteComment(postId, commentId) {
     try {
         await deleteDoc(doc(db, "posts", postId, "comments", commentId));
         console.log("Comment successfully deleted!");
-
-        // Remove the comment element from the DOM
-        const commentElement = document.getElementById(`commentText-${commentId}`);
-        if (commentElement) {
-            commentElement.parentElement.remove();
-        }
-
-        // Show an alert message specific to this post's comments section
-        const alertHere2 = document.getElementById(`alertHere2-${postId}`);
-        if (alertHere2) {
-            alertHere2.innerHTML = "Comment Deleted successfully";
-            alertHere2.style.color = "red";
-
-            // Clear the message after 3 seconds
-            setTimeout(() => {
-                alertHere2.innerHTML = ""; // Clear the message
-            }, 3000); // 3000 milliseconds = 3 seconds
-        }
+        loadComments(postId); // Reload comments after deletion
     } catch (error) {
         console.error("Error removing comment: ", error);
     }
 }
-
 
 
 // Function to toggle the visibility of the comments section

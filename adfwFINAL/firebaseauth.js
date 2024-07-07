@@ -159,7 +159,6 @@ guestLogin.addEventListener('click', (event) => {
     event.preventDefault();
     signInAnonymously(auth)
         .then((userCredential) => {
-            showMessage('Guest login successful', 'signInMessage');
             const user = userCredential.user;
             localStorage.setItem('loggedInUserId', user.uid);
             window.location.href = 'homepage.html';

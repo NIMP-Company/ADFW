@@ -1,0 +1,35 @@
+[debug] [2024-07-07T11:15:59.020Z] ----------------------------------------------------------------------
+[debug] [2024-07-07T11:15:59.023Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\pnles\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2024-07-07T11:15:59.023Z] CLI Version:   13.11.4
+[debug] [2024-07-07T11:15:59.023Z] Platform:      win32
+[debug] [2024-07-07T11:15:59.023Z] Node Version:  v20.15.0
+[debug] [2024-07-07T11:15:59.024Z] Time:          Sun Jul 07 2024 19:15:59 GMT+0800 (Singapore Standard Time)
+[debug] [2024-07-07T11:15:59.024Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-07-07T11:15:59.107Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-07-07T11:15:59.108Z] > authorizing via signed-in user (pnestrella@gbox.adnu.edu.ph)
+[debug] [2024-07-07T11:15:59.108Z] [iam] checking project nimp-company for permissions ["firebase.projects.get"]
+[debug] [2024-07-07T11:15:59.109Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/nimp-company:testIamPermissions [none]
+[debug] [2024-07-07T11:15:59.109Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/nimp-company:testIamPermissions x-goog-quota-user=projects/nimp-company
+[debug] [2024-07-07T11:15:59.110Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nimp-company:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-07-07T11:16:00.014Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/nimp-company:testIamPermissions 200
+[debug] [2024-07-07T11:16:00.014Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/nimp-company:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2024-07-07T11:16:00.015Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company [none]
+[debug] [2024-07-07T11:16:00.282Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company 200
+[debug] [2024-07-07T11:16:00.282Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company {"projectId":"nimp-company","projectNumber":"410220085822","displayName":"NIMP company","name":"projects/nimp-company","resources":{"hostingSite":"nimp-company"},"state":"ACTIVE","etag":"1_beb34e8d-a428-4302-8ed4-53d7e31a189a"}
+[info] 
+[info] === Serving from 'C:\Users\pnles'...
+[info] 
+[debug] [2024-07-07T11:16:00.284Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/nimp-company/sites 
+[debug] [2024-07-07T11:16:00.857Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/nimp-company/sites 200
+[debug] [2024-07-07T11:16:00.858Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/nimp-company/sites {"sites":[{"name":"projects/nimp-company/sites/nimp-company","defaultUrl":"https://nimp-company.web.app","appId":"1:410220085822:web:71162dfb74fb48243d476f","type":"DEFAULT_SITE"}]}
+[debug] [2024-07-07T11:16:00.858Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company/webApps/1:410220085822:web:71162dfb74fb48243d476f/config [none]
+[debug] [2024-07-07T11:16:01.650Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company/webApps/1:410220085822:web:71162dfb74fb48243d476f/config 200
+[debug] [2024-07-07T11:16:01.651Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company/webApps/1:410220085822:web:71162dfb74fb48243d476f/config {"projectId":"nimp-company","appId":"1:410220085822:web:71162dfb74fb48243d476f","storageBucket":"nimp-company.appspot.com","apiKey":"AIzaSyBkwA_QM6kda9cNQ-HGjM28uM1uoADz9XI","authDomain":"nimp-company.firebaseapp.com","messagingSenderId":"410220085822","measurementId":"G-TZ5DWTK7WG"}
+[debug] [2024-07-07T11:16:01.655Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company [none]
+[debug] [2024-07-07T11:16:01.890Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company 200
+[debug] [2024-07-07T11:16:01.890Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/nimp-company {"projectId":"nimp-company","projectNumber":"410220085822","displayName":"NIMP company","name":"projects/nimp-company","resources":{"hostingSite":"nimp-company"},"state":"ACTIVE","etag":"1_beb34e8d-a428-4302-8ed4-53d7e31a189a"}
+[info] i  hosting[nimp-company]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] +  hosting[nimp-company]: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [07/Jul/2024:11:16:05 +0000] "GET / HTTP/1.1" 200 219 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [07/Jul/2024:11:16:05 +0000] \"GET / HTTP/1.1\" 200 219 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36\""}}
+[info] i  hosting: ::1 - - [07/Jul/2024:11:16:05 +0000] "GET /favicon.ico HTTP/1.1" 404 - "http://localhost:5000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [07/Jul/2024:11:16:05 +0000] \"GET /favicon.ico HTTP/1.1\" 404 - \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36\""}}
