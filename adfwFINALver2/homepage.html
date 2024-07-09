@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="navbar">
+            <div class="logo">ADNU Freedom Wall</div>
+            <button id="logout">Logout</button>
+        </div>
+        <div class="content-wrapper">
+            <div class="container">
+                <h1 id="welcome">Welcome, <span id="loggedUserFName"></span>!</h1>
+                <form id="postForm">
+                    <input type="text" id="postTitle" placeholder="Post Title" required>
+                    <textarea id="postContent" placeholder="Post Content" required></textarea>
+                    <button class="add-post-button" id="addPostButton">Add Post</button>
+                    <div id="postMessage" class="messageDiv"></div>
+                </form>
+                <h2 id="postH2">Posts</h2>
+                <div id="postsContainer"></div>
+            </div>
+        </div>
+    </div>
+    <footer id="ftr">
+        <p>&copy; 2024 NIMP Company. All rights reserved.</p>
+    </footer>
+    <script type="module" src="./homepage.js"></script>
+</body>
+</html>
